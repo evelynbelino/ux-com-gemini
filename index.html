@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portal de Acessibilidade</title>
+
+    <style>
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f7fa;
+            color: #17202a;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            background-color: #064789;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 1.1rem;
+        }
+
+        /* =========================
+           MENU DE ACESSIBILIDADE
+        ========================== */
+
+        .acessibilidade {
+            background-color: white;
+            border-bottom: 2px solid #d5d8dc;
+            padding: 15px;
+        }
+
+        .acessibilidade h2 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .botoes-acessibilidade {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-acessibilidade {
+            display: inline-block;
+            background-color: #eaf2f8;
+            color: #17202a;
+            border: 3px solid #064789;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-acessibilidade:hover,
+        .btn-acessibilidade:focus {
+            background-color: #d4e6f1;
+            outline: 4px solid #f4d03f;
+            outline-offset: 2px;
+        }
+
+        /* =========================
+           CONTEÚDO PRINCIPAL
+        ========================== */
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 35px 20px;
+        }
+
+        .boas-vindas {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .boas-vindas h2 {
+            color: #064789;
+            font-size: 1.8rem;
+        }
+
+        .boas-vindas p {
+            font-size: 1.2rem;
+        }
+
+        /* =========================
+           CARTÕES
+        ========================== */
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .cartao {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #d5d8dc;
+        }
+
+        .cartao h3 {
+            color: #064789;
+            font-size: 1.4rem;
+            margin-top: 0;
+        }
+
+        .cartao p {
+            font-size: 1.1rem;
+        }
+
+        /* =========================
+           BOTÃO DE EMERGÊNCIA
+        ========================== */
+
+        .area-emergencia {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .botao-emergencia {
+            display: inline-block;
+            background-color: #c0392b;
+            color: white;
+            padding: 22px 35px;
+            border-radius: 15px;
+            border: 4px solid #922b21;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .botao-emergencia:hover,
+        .botao-emergencia:focus {
+            background-color: #922b21;
+            outline: 5px solid #f4d03f;
+            outline-offset: 3px;
+        }
+
+        /* =========================
+           MODAL DE EMERGÊNCIA
+        ========================== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: 0.3s;
+        }
+
+        /* O modal aparece quando o link recebe foco */
+        .modal:target {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-conteudo {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 18px;
+            border: 5px solid #c0392b;
+        }
+
+        .modal-conteudo h2 {
+            color: #c0392b;
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .contato-emergencia {
+            display: block;
+            margin: 15px 0;
+            padding: 18px;
+            border-radius: 12px;
+            background-color: #f5f5f5;
+            color: #17202a;
+            text-decoration: none;
+            border: 3px solid #555;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .contato-emergencia:hover,
+        .contato-emergencia:focus {
+            background-color: #e8f6f3;
+            outline: 4px solid #f4d03f;
+        }
+
+        .fechar-modal {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 15px 25px;
+            background-color: #34495e;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .fechar-modal:hover,
+        .fechar-modal:focus {
+            background-color: #17202a;
+            outline: 4px solid #f4d03f;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            background-color: #17202a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* =========================
+           FOCO PARA TECLADO
+        ========================== */
+
+        a:focus,
+        button:focus {
+            outline: 4px solid #f4d03f;
+            outline-offset: 3px;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            html {
+                font-size: 17px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                padding: 20px 15px;
+            }
+
+            .botao-emergencia {
+                width: 100%;
+                font-size: 1.3rem;
+            }
+
+            .botoes-acessibilidade {
+                flex-direction: column;
+            }
+
+            .btn-acessibilidade {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* =========================
+           ALTO CONTRASTE
+        ========================== */
+
+        .alto-contraste {
+            background-color: black;
+            color: white;
+        }
+
+        .alto-contraste header,
+        .alto-contraste footer {
+            background-color: black;
+            color: white;
+        }
+
+        .alto-contraste .boas-vindas,
+        .alto-contraste .cartao,
+        .alto-contraste .acessibilidade,
+        .alto-contraste .modal-conteudo {
+            background-color: black;
+            color: white;
+            border-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bem-vindo ao Portal de Acessibilidade</h1>
+        <p>Um espaço simples, seguro e fácil de usar.</p>
+    </header>
+
+
+    <!-- MENU DE ACESSIBILIDADE -->
+
+    <section class="acessibilidade" aria-labelledby="titulo-acessibilidade">
+
+        <h2 id="titulo-acessibilidade">
+            Menu de acessibilidade
+        </h2>
+
+        <div class="botoes-acessibilidade">
+
+            <!-- 
+                Em HTML/CSS puro estes botões são apenas a interface.
+                O funcionamento real de aumentar/diminuir fonte
+                precisa de JavaScript.
+            -->
+
+            <button
+                class="btn-acessibilidade"
+                type="button"
+                aria-label="Aumentar tamanho da fonte">
+                A+ Aumentar fonte
+            </button>
+
+            <button
+                class="btn-acessibilidade"
+                type="button"
+                aria-label="Diminuir tamanho da fonte">
+                A- Diminuir fonte
+            </button>
+
+            <button
+                class="btn-acessibilidade"
+                type="button"
+                aria-label="Ativar leitura em voz alta">
+                🔊 Ler página em voz alta
+            </button>
+
+            <button
+                class="btn-acessibilidade"
+                type="button"
+                aria-label="Ativar alto contraste">
+                ◐ Alto contraste
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <main>
+
+        <section class="boas-vindas">
+
+            <h2>Olá! Como podemos ajudar?</h2>
+
+            <p>
+                Este site foi desenvolvido para facilitar o acesso
+                a informações importantes. Os botões possuem tamanho
+                maior e cores com bom contraste para facilitar a leitura.
+            </p>
+
+        </section>
+
+
+        <section class="cartoes" aria-label="Serviços">
+
+            <article class="cartao">
+                <h3>📞 Ajuda</h3>
+
+                <p>
+                    Encontre informações importantes de contato
+                    de maneira rápida e simples.
+                </p>
+            </article>
+
+
+            <article class="cartao">
+                <h3>♿ Acessibilidade</h3>
+
+                <p>
+                    Utilize o menu acima para acessar recursos
+                    que facilitam a utilização do site.
+                </p>
+            </article>
+
+
+            <article class="cartao">
+                <h3>🏠 Segurança</h3>
+
+                <p>
+                    Em uma situação de emergência, utilize o botão
+                    vermelho para encontrar os contatos importantes.
+                </p>
+            </article>
+
+        </section>
+
+
+        <!-- BOTÃO DE EMERGÊNCIA -->
+
+        <section class="area-emergencia">
+
+            <a
+                href="#modal-emergencia"
+                class="botao-emergencia"
+                aria-label="Abrir contatos de emergência">
+
+                🚨 EMERGÊNCIA
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL -->
+
+    <div
+        id="modal-emergencia"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-emergencia">
+
+        <div class="modal-conteudo">
+
+            <h2 id="titulo-emergencia">
+                🚨 Contatos de emergência
+            </h2>
+
+            <p>
+                Escolha abaixo o contato que você precisa.
+            </p>
+
+
+            <!-- Polícia -->
+
+            <a
+                href="tel:190"
+                class="contato-emergencia"
+                aria-label="Ligar para a Polícia, telefone 190">
+
+                👮 Polícia — 190
+
+            </a>
+
+
+            <!-- Bombeiros -->
+
+            <a
+                href="tel:193"
+                class="contato-emergencia"
+                aria-label="Ligar para os Bombeiros, telefone 193">
+
+                🚒 Bombeiros — 193
+
+            </a>
+
+
+            <!-- WhatsApp -->
+
+            <!--
+                SUBSTITUA 5541999999999 pelo número
+                da pessoa de confiança.
+
+                Formato:
+                55 + DDD + número
+            -->
+
+            <a
+                href="https://wa.me/5541999999999"
+                class="contato-emergencia"
+                target="_blank"
+                rel="noopener"
+                aria-label="Abrir WhatsApp da pessoa de confiança">
+
+                💬 WhatsApp — Pessoa de confiança
+
+            </a>
+
+
+            <a
+                href="#"
+                class="fechar-modal"
+                aria-label="Fechar janela de emergência">
+
+                Fechar
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <p>
+            Portal de Acessibilidade — Desenvolvido para facilitar o acesso à informação.
+        </p>
+
+    </footer>
+
+</body>
+</html>
